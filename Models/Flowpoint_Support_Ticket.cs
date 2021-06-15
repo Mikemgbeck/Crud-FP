@@ -34,6 +34,6 @@ namespace Crud_FP.Models
         public int IVendorID { get; set; }
 
         [ForeignKey("IVendorID")]
-        public virtual Flowpoint_Support_Vendor Flowpoint_Support_Vendor { get; set; }
+        public  Flowpoint_Support_Vendor Flowpoint_Support_Vendor { get; set; }
     }
 }

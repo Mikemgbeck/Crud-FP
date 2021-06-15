@@ -32,7 +32,8 @@ namespace Crud_FP.Controllers
                 vendor = await _vendorRepository.GetVendorByID(searchID);
                 VendorIndexViewModel model = new VendorIndexViewModel()
                 {
-                    Vendors = vendor
+                    Vendors = vendor,
+                    /*VCompanyName = vendor.Flowpoint_Support_Company*/
                 };
 
                 return View(model);
@@ -44,6 +45,7 @@ namespace Crud_FP.Controllers
                 VendorIndexViewModel model = new VendorIndexViewModel()
                 {
                     Vendors = vendors
+                    
                 };
 
                 return View(model);

@@ -13,6 +13,6 @@ namespace Crud_FP.Data.Repositories
         Flowpoint_Support_Company GetCompany(int companyId);
         Task AddCompany(Flowpoint_Support_Company newCompany);
         Flowpoint_Support_Company UpdateCompany(Flowpoint_Support_Company editedCompany);
-        Task DeleteCompany(int companyId);
+        void DeleteCompany(int companyId);
     }
 }

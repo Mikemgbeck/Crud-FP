@@ -61,7 +61,7 @@
                             Email
                         </th>
                         <th>
-                            Company Id
+                            Company 
                         </th>
                     </tr>
                 </thead>
@@ -71,7 +71,7 @@
                         <tr>
                             <td width="25%"> <a asp-controller="Vendor" asp-action="Detail" asp-route-Id="@flowpoint_Support_Vendor.IVendorID">@flowpoint_Support_Vendor.VVendorName</a></td>
                             <td width="25%">@flowpoint_Support_Vendor.VEmail</td>
-                            <td width="25%">@flowpoint_Support_Vendor.ICompanyID</td>
+                            <td width="25%">@flowpoint_Support_Vendor.Flowpoint_Support_Company.VCompanyName</td>
                             <td width="25%">
                                 <div class="w-100 btn-group" role="group">
                                     <a asp-controller="Vendor" asp-action="Update" asp-route-Id="@flowpoint_Support_Vendor.IVendorID" class="btn btn-primary mx-1">Update</a>

@@ -54,7 +54,7 @@ namespace Crud_FP.Models
         public int ICompanyID { get; set; }
         
         [ForeignKey("ICompanyID")]
-        public virtual Flowpoint_Support_Company Flowpoint_Support_Company { get; set; }
+        public Flowpoint_Support_Company Flowpoint_Support_Company { get; set; }
         public ICollection<Flowpoint_Support_Ticket> Flowpoint_Support_Tickets { get; set; }
     }
 }

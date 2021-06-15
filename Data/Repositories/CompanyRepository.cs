@@ -20,13 +20,13 @@ namespace Crud_FP.Data.Repositories
             _context.SaveChanges();
         }
 
-        public async Task DeleteCompany(int companyId)
+        public void DeleteCompany(int companyId)
         {
-            Flowpoint_Support_Company company = await _context.Flowpoint_Support_Companies.FindAsync(companyId);
+            Flowpoint_Support_Company company = _context.Flowpoint_Support_Companies.Find(companyId);
             if (company != null)
             {
-                _context.Flowpoint_Support_Companies.Remove(company);
-               await _context.SaveChangesAsync();
+               _context.Flowpoint_Support_Companies.Remove(company);
+               _context.SaveChangesAsync();
             }
         }
 

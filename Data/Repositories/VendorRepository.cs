@@ -30,13 +30,14 @@ namespace Crud_FP.Data.Repositories
 
             if (string.IsNullOrEmpty(searchText))
             {
-                vendors = await _context.Flowpoint_Support_Vendors.ToListAsync();
+                vendors = await _context.Flowpoint_Support_Vendors.Include(c => c.Flowpoint_Support_Company).ToListAsync();
             }
             else
             {
                 vendors = await _context.Flowpoint_Support_Vendors
                                     .Where(x => x.VVendorName.ToLower()
                                     .Contains(searchText.ToLower()))
+                                    .Include(c => c.Flowpoint_Support_Company)
                                     .ToListAsync();
             }
 
@@ -51,7 +52,7 @@ namespace Crud_FP.Data.Repositories
         public async Task<List<Flowpoint_Support_Vendor>> GetVendorByID(int vendorID)
         {
             List<Flowpoint_Support_Vendor> vendor = null;
-            vendor = await _context.Flowpoint_Support_Vendors.Where(x => x.IVendorID.Equals(vendorID)).ToListAsync();
+            vendor = await _context.Flowpoint_Support_Vendors.Where(x => x.IVendorID.Equals(vendorID)).Include(c =>c.Flowpoint_Support_Company).ToListAsync();
 
             if (vendor == null)
             {
