@@ -1,4 +1,5 @@
-﻿using Crud_FP.Data.Repositories;
+﻿using Crud_FP.Data;
+using Crud_FP.Data.Repositories;
 using Crud_FP.Models;
 using Crud_FP.ViewModels;
 using Microsoft.AspNetCore.Mvc;

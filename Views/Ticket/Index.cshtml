@@ -1,4 +1,4 @@
-﻿@model VendorIndexViewModel;
+﻿@model TicketIndexViewModel;
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,20 +8,20 @@
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Vendor List</h2>
+            <h2 class="text-primary">Ticket List</h2>
         </div>
 
         <div class="row">
 
             <div class="col-12 mb-5">
-                <form asp-controller="Vendor" asp-action="Index" method="get">
+                <form asp-controller="Ticket" asp-action="Index" method="get">
                     <div class="col-12">
                         <div class="form-group row text-left">
                             <label style="display: block; width: 100%;">Search Vendor Name</label>
                             <input class="form-control" style="max-width: 300px; display: block;" type="text" id="searchInput"
                                    value="@ViewData["searchText"]" name="searchText" />
                             <button class="btn btn-success ml-2" id="search-button" type="submit">Search</button>
-                            <a class="btn btn-danger ml-2" id="reset-button" asp-controller="Vendor" asp-action="Index">Reset</a>
+                            <a class="btn btn-danger ml-2" id="reset-button" asp-controller="Ticket" asp-action="Index">Reset</a>
                         </div>
                     </div>
                 </form>
@@ -31,25 +31,25 @@
         <div class="row">
 
             <div class="col-12 mb-5">
-                <form asp-controller="Vendor" asp-action="Index" method="get">
+                <form asp-controller="Ticket" asp-action="Index" method="get">
                     <div class="col-12">
                         <div class="form-group row text-left">
-                            <label style="display: block; width: 100%;">Search Vendor ID</label>
+                            <label style="display: block; width: 100%;">Search Ticket ID</label>
                             <input class="form-control" style="max-width: 300px; display: block;" type="number" min="1" inputmode="numeric" step="1" id="searchInput"
                                    value="@ViewData["searchID"]" name="searchID" />
                             <button class="btn btn-success ml-2" id="search-button" type="submit">Search</button>
-                            <a class="btn btn-danger ml-2" id="reset-button" asp-controller="Vendor" asp-action="Index">Reset</a>
+                            <a class="btn btn-danger ml-2" id="reset-button" asp-controller="Ticket" asp-action="Index">Reset</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="col-12 text-right">
-            <a asp-controller="Vendor" asp-action="Create" class="btn btn-primary">Create new Vendor</a>
+            <a asp-controller="Ticket" asp-action="Create" class="btn btn-primary">Create new Ticket</a>
         </div>
         <br />
 
-        @if (Model.Vendors.Count() > 0)
+        @if (Model.Tickets.Count() > 0)
         {
             <table class="table table-bordered table-striped" style="width:100%">
                 <thead>
@@ -58,24 +58,24 @@
                             Vendor Name
                         </th>
                         <th>
-                            Email
+                            Ticket ID
                         </th>
                         <th>
-                            Company 
+                            Message
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var flowpoint_Support_Vendor in Model.Vendors)
+                    @foreach (var flowpoint_Support_Ticket in Model.Tickets)
                     {
                         <tr>
-                            <td width="25%"> <a asp-controller="Vendor" asp-action="Detail" asp-route-Id="@flowpoint_Support_Vendor.IVendorID">@flowpoint_Support_Vendor.VVendorName</a></td>
-                            <td width="25%">@flowpoint_Support_Vendor.VEmail</td>
-                            <td width="25%">@flowpoint_Support_Vendor.Flowpoint_Support_Company.VCompanyName</td>
-                            <td width="25%">
+                            <td width="20%">@flowpoint_Support_Ticket.Flowpoint_Support_Vendor.VVendorName</td>
+                            <td width="20%"><a asp-controller="Ticket" asp-action="Detail" asp-route-Id="@flowpoint_Support_Ticket.ITicketID">@flowpoint_Support_Ticket.ITicketID</a></td>
+                            <td width="40%">@flowpoint_Support_Ticket.VTicketMessage</td>
+                            <td width="20%">
                                 <div class="w-100 btn-group" role="group">
-                                    <a asp-controller="Vendor" asp-action="Update" asp-route-Id="@flowpoint_Support_Vendor.IVendorID" class="btn btn-primary mx-1">Update</a>
-                                    <a asp-controller="Vendor" asp-action="Delete" asp-route-Id="@flowpoint_Support_Vendor.IVendorID" class="btn btn-danger mx-1">Delete</a>
+                                    <a asp-controller="Ticket" asp-action="Update" asp-route-Id="@flowpoint_Support_Ticket.ITicketID" class="btn btn-primary mx-1">Update</a>
+                                    <a asp-controller="Ticket" asp-action="Delete" asp-route-Id="@flowpoint_Support_Ticket.ITicketID" class="btn btn-danger mx-1">Delete</a>
                                 </div>
                             </td>
                         </tr>
