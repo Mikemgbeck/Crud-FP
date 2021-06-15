@@ -16,12 +16,18 @@ namespace Crud_FP.Data.Repositories
         }
         public async Task AddVendor(Flowpoint_Support_Vendor newVendor)
         {
-            throw new NotImplementedException();
+            await _context.Flowpoint_Support_Vendors.AddAsync(newVendor);
+            _context.SaveChanges();
         }
 
-        public async Task DeleteVendor(int vendorId)
+        public void DeleteVendor(int vendorId)
         {
-            throw new NotImplementedException();
+            Flowpoint_Support_Vendor vendor = _context.Flowpoint_Support_Vendors.Find(vendorId);
+            if (vendor != null)
+            {
+                _context.Flowpoint_Support_Vendors.Remove(vendor);
+                _context.SaveChanges();
+            }
         }
 
         public async Task<List<Flowpoint_Support_Vendor>> GetAllVendors(string searchText)
@@ -46,7 +52,15 @@ namespace Crud_FP.Data.Repositories
 
         public Flowpoint_Support_Vendor GetVendor(int vendorId)
         {
-            throw new NotImplementedException();
+            Flowpoint_Support_Vendor vendor = null;
+            vendor = _context.Flowpoint_Support_Vendors.Find(vendorId);
+
+            if (vendor == null)
+            {
+                throw new Exception("No vendor found under the provided ID");
+            }
+
+            return vendor;
         }
 
         public async Task<List<Flowpoint_Support_Vendor>> GetVendorByID(int vendorID)
@@ -62,9 +76,11 @@ namespace Crud_FP.Data.Repositories
             return vendor;
         }
 
-        public Flowpoint_Support_Vendor UpdateVendor(Flowpoint_Support_Vendor editedVendor)
+        public void UpdateVendor(Flowpoint_Support_Vendor editedVendor)
         {
-            throw new NotImplementedException();
+            var flowpoint_Support_Vendor = _context.Flowpoint_Support_Vendors.Attach(editedVendor);
+            flowpoint_Support_Vendor.State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

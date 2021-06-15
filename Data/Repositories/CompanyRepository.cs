@@ -26,7 +26,7 @@ namespace Crud_FP.Data.Repositories
             if (company != null)
             {
                _context.Flowpoint_Support_Companies.Remove(company);
-               _context.SaveChangesAsync();
+               _context.SaveChanges();
             }
         }
 
@@ -57,7 +57,7 @@ namespace Crud_FP.Data.Repositories
 
             if (company == null)
             {
-                throw new Exception("No image found under the provided ID");
+                throw new Exception("No company found under the provided ID");
             }
 
             return company;
@@ -76,12 +76,11 @@ namespace Crud_FP.Data.Repositories
             return company;
         }
 
-        public Flowpoint_Support_Company UpdateCompany(Flowpoint_Support_Company editedCompany)
+        public void UpdateCompany(Flowpoint_Support_Company editedCompany)
         {
             var flowpoint_Support_Company = _context.Flowpoint_Support_Companies.Attach(editedCompany);
             flowpoint_Support_Company.State = EntityState.Modified;
             _context.SaveChanges();
-            return editedCompany;
         }
     }
 }
