@@ -62,7 +62,7 @@ namespace Crud_FP.Controllers
                 VendorDropDown = _db.Flowpoint_Support_Vendors.Select(i => new SelectListItem
                 {
                     Text = i.VVendorName,
-                    Value = i.ICompanyID.ToString()
+                    Value = i.IVendorID.ToString()
                 })
             };
 
