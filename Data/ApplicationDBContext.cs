@@ -25,7 +25,5 @@ namespace Crud_FP.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Crud_FP.ViewModels.CompanyDetailViewModel> CompanyDetailViewModel { get; set; }
-
     }
 }

@@ -122,7 +122,7 @@ namespace Crud_FP.Controllers
 
         //Post Delete
 
-        [HttpPost]
+        [HttpDelete]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int id)
         {

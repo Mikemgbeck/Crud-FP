@@ -8,8 +8,6 @@ namespace Crud_FP.ViewModels
 {
     public class VendorIndexViewModel
     {
-        public string VVendorName { get; set; }
-        public string VCompanyName { get; set; }
-        public IEnumerable<Flowpoint_Support_Ticket> Flowpoint_Support_Tickets { get; set; }
+        public IEnumerable<Flowpoint_Support_Vendor> Vendors { get; set; }
     }
 }

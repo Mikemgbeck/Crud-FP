@@ -70,7 +70,7 @@ namespace Crud_FP.Data.Repositories
 
             if (company == null)
             {
-                throw new Exception("No image found under the provided ID");
+                throw new Exception("No company found under the provided ID");
             }
 
             return company;

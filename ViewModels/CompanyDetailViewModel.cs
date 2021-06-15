@@ -9,7 +9,6 @@ namespace Crud_FP.ViewModels
 {
     public class CompanyDetailViewModel
     {
-        [Key]
         public int ICompanyID { get; set; }
 
         [Required(ErrorMessage = "Company Name is Required")]
