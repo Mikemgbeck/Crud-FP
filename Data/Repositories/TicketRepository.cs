@@ -52,7 +52,15 @@ namespace Crud_FP.Data.Repositories
 
         public Flowpoint_Support_Ticket GetTicket(int ticketID)
         {
-            throw new NotImplementedException();
+            Flowpoint_Support_Ticket ticket = null;
+            ticket = _context.Flowpoint_Support_Tickets.Find(ticketID);
+
+            if (ticket == null)
+            {
+                throw new Exception("No Ticket found under the provided ID");
+            }
+
+            return ticket;
         }
 
         public async Task<List<Flowpoint_Support_Ticket>> GetTicketByID(int ticketID)
