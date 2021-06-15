@@ -52,8 +52,6 @@ namespace Crud_FP.Models
         [Required(ErrorMessage = "BlsActive is required ")]
         public bool BlsActive { get; set; }
         public int ICompanyID { get; set; }
-        [ForeignKey("ICompanyID")]
-        public virtual Flowpoint_Support_Company Flowpoint_Support_Company { get; set; }
         public ICollection<Flowpoint_Support_Ticket> Flowpoint_Support_Tickets { get; set; }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Crud_FP.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Crud_FP.Models
+namespace Crud_FP.ViewModels
 {
-    public class Flowpoint_Support_Company
+    public class CompanyDetailViewModel
     {
         [Key]
         public int ICompanyID { get; set; }
@@ -50,8 +51,6 @@ namespace Crud_FP.Models
 
         [Required(ErrorMessage = "blsActive is Required")]
         public bool BlsActive { get; set; }
-
-        public ICollection<Flowpoint_Support_Vendor> Flowpoint_Support_Vendors { get; set; }
 
     }
 }

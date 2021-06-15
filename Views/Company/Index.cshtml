@@ -1,0 +1,92 @@
+﻿@model CompanyIndexViewModel;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Companies</h1>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Company List</h2>
+        </div>
+
+        <div class="row">
+
+            <div class="col-12 mb-5">
+                <form asp-controller="Company" asp-action="Index" method="get">
+                    <div class="col-12">
+                        <div class="form-group row text-left">
+                            <label style="display: block; width: 100%;">Search Company Name</label>
+                            <input class="form-control" style="max-width: 300px; display: block;" type="text" id="searchInput"
+                                   value="@ViewData["searchText"]" name="searchText" />
+                            <button class="btn btn-success ml-2" id="search-button" type="submit">Search</button>
+                            <a class="btn btn-danger ml-2" id="reset-button" asp-controller="CompanyController" asp-action="Index">Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+
+            <div class="col-12 mb-5">
+                <form asp-controller="Company" asp-action="Index" method="get">
+                    <div class="col-12">
+                        <div class="form-group row text-left">
+                            <label style="display: block; width: 100%;">Search Company ID</label>
+                            <input class="form-control" style="max-width: 300px; display: block;" type="number" min="1" inputmode="numeric" step="1" id="searchInput"
+                                   value="@ViewData["searchID"]" name="searchID" />
+                            <button class="btn btn-success ml-2" id="search-button" type="submit">Search</button>
+                            <a class="btn btn-danger ml-2" id="reset-button" asp-controller="CompanyController" asp-action="Index">Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 text-right">
+            <a asp-controller="Company" asp-action="Create" class="btn btn-primary">Create new Company</a>
+        </div>
+        <br />
+
+        @if (Model.Companies.Count() > 0)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Company Name
+                        </th>
+                        <th>
+                            Country
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var flowpoint_Support_Company in Model.Companies)
+                    {
+                        <tr>
+                            <td width="25%"> <a asp-controller="Company" asp-action="Detail" asp-route-Id="@flowpoint_Support_Company.ICompanyID">@flowpoint_Support_Company.VCompanyName</a></td>
+                            <td width="25%">@flowpoint_Support_Company.VCountry</td>
+                            <td width="25%">@flowpoint_Support_Company.VEmail</td>
+                            <td width="25%">
+                                <div class="w-100 btn-group" role="group">
+                                    <a asp-controller="Company" asp-action="Update" asp-route-Id="@flowpoint_Support_Company.ICompanyID" class="btn btn-primary mx-1">Update</a>
+                                    <a asp-controller="Company" asp-action="Delete" asp-route-Id="@flowpoint_Support_Company.ICompanyID" class="btn btn-danger mx-1">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No items Listed</p>
+        }
+
+    </div>
+</div>
