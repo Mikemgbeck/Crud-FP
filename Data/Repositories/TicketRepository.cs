@@ -70,7 +70,9 @@ namespace Crud_FP.Data.Repositories
 
         public void UpdateTicket(Flowpoint_Support_Ticket editedTicket)
         {
-            throw new NotImplementedException();
+            var flowpoint_Support_Ticket = _context.Flowpoint_Support_Tickets.Attach(editedTicket);
+            flowpoint_Support_Ticket.State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

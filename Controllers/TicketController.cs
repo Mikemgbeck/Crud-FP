@@ -130,5 +130,96 @@ namespace Crud_FP.Controllers
             _ticketRepository.DeleteTicket(id);
             return RedirectToAction("Index");
         }
+
+        // get update
+        public IActionResult Update(int id)
+        {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            Flowpoint_Support_Ticket ticket = _ticketRepository.GetTicket(id);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            TicketDetailViewModel viewmodel = new TicketDetailViewModel()
+            {
+                ITicketID = ticket.ITicketID,
+                VTicketMessage = ticket.VTicketMessage,
+                DtCreatedDate = ticket.DtCreatedDate,
+                DtModifiedDate = ticket.DtModifiedDate,
+                ICreatedBy = ticket.ICreatedBy,
+                IModifiedBy = ticket.IModifiedBy,
+                BlsActive = ticket.BlsActive,
+                IVendorID = ticket.IVendorID,
+
+                VendorDropDown = _db.Flowpoint_Support_Vendors.Select(i => new SelectListItem
+                {
+                    Text = i.VVendorName,
+                    Value = i.IVendorID.ToString()
+                })
+            };
+            return View(viewmodel);
+
+        }
+
+        // POST UPDATE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(TicketDetailViewModel viewmodel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Flowpoint_Support_Ticket ticket = new Flowpoint_Support_Ticket()
+                {
+                    ITicketID = viewmodel.ITicketID,
+                    VTicketMessage = viewmodel.VTicketMessage,
+                    DtCreatedDate = viewmodel.DtCreatedDate,
+                    DtModifiedDate = viewmodel.DtModifiedDate,
+                    ICreatedBy = viewmodel.ICreatedBy,
+                    IModifiedBy = viewmodel.IModifiedBy,
+                    BlsActive = viewmodel.BlsActive,
+                    IVendorID = viewmodel.IVendorID
+                };
+
+                _ticketRepository.UpdateTicket(ticket);
+                return RedirectToAction("Index");
+
+            }
+            return View(viewmodel);
+
+        }
+        //get detail
+        public IActionResult Detail(int id)
+        {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            var ticket = _ticketRepository.GetTicket(id);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            TicketDetailViewModel viewmodel = new TicketDetailViewModel()
+            {
+                ITicketID = ticket.ITicketID,
+                VTicketMessage = ticket.VTicketMessage,
+                DtCreatedDate = ticket.DtCreatedDate,
+                DtModifiedDate = ticket.DtModifiedDate,
+                ICreatedBy = ticket.ICreatedBy,
+                IModifiedBy = ticket.IModifiedBy,
+                BlsActive = ticket.BlsActive,
+                IVendorID = ticket.IVendorID,
+            };
+            return View(viewmodel);
+
+        }
     }
 }

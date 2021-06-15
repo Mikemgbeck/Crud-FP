@@ -144,6 +144,8 @@ namespace Crud_FP.Controllers
             _vendorRepository.DeleteVendor(id);
             return RedirectToAction("Index");
         }
+
+        // get update
         public IActionResult Update(int id)
         {
 
