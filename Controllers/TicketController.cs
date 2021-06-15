@@ -3,6 +3,7 @@ using Crud_FP.Data.Repositories;
 using Crud_FP.Models;
 using Crud_FP.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,82 @@ namespace Crud_FP.Controllers
                 return View(model);
             }
 
+
+        }
+        public IActionResult Create()
+        {
+            TicketDetailViewModel viewModel = new TicketDetailViewModel()
+            {
+                VendorDropDown = _db.Flowpoint_Support_Vendors.Select(i => new SelectListItem
+                {
+                    Text = i.VVendorName,
+                    Value = i.ICompanyID.ToString()
+                })
+            };
+
+            return View(viewModel);
+        }
+
+        // POST Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(TicketDetailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Flowpoint_Support_Ticket createTicket = new Flowpoint_Support_Ticket()
+                {
+                    ITicketID = model.ITicketID,
+                    VTicketMessage = model.VTicketMessage,
+                    DtCreatedDate = model.DtCreatedDate,
+                    DtModifiedDate = model.DtModifiedDate,
+                    ICreatedBy = model.ICreatedBy,
+                    IModifiedBy = model.IModifiedBy,
+                    BlsActive = model.BlsActive,
+                    IVendorID = model.IVendorID
+                };
+
+                _ticketRepository.AddTicket(createTicket);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+        public IActionResult Delete(int id)
+        {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            Flowpoint_Support_Ticket ticket = _ticketRepository.GetTicket(id);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            TicketDetailViewModel viewmodel = new TicketDetailViewModel()
+            {
+                ITicketID = ticket.ITicketID,
+                VTicketMessage = ticket.VTicketMessage,
+                DtCreatedDate = ticket.DtCreatedDate,
+                DtModifiedDate = ticket.DtModifiedDate,
+                ICreatedBy = ticket.ICreatedBy,
+                IModifiedBy = ticket.IModifiedBy,
+                BlsActive = ticket.BlsActive,
+                IVendorID = ticket.IVendorID
+            };
+            return View(viewmodel);
+
+        }
+
+        //Post Delete
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int id)
+        {
+            _ticketRepository.DeleteTicket(id);
+            return RedirectToAction("Index");
         }
     }
 }

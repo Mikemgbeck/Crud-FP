@@ -14,14 +14,20 @@ namespace Crud_FP.Data.Repositories
         {
             _context = context;
         }
-        public async Task AddTicket(Flowpoint_Support_Ticket newVTicket)
+        public async Task AddTicket(Flowpoint_Support_Ticket newTicket)
         {
-            throw new NotImplementedException();
+            await _context.Flowpoint_Support_Tickets.AddAsync(newTicket);
+            _context.SaveChanges();
         }
 
         public void DeleteTicket(int ticketID)
         {
-            throw new NotImplementedException();
+            Flowpoint_Support_Ticket ticket = _context.Flowpoint_Support_Tickets.Find(ticketID);
+            if (ticket != null)
+            {
+                _context.Flowpoint_Support_Tickets.Remove(ticket);
+                _context.SaveChanges();
+            }
         }
 
         public async Task<List<Flowpoint_Support_Ticket>> GetAllTickets(string searchText)

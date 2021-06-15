@@ -11,7 +11,7 @@ namespace Crud_FP.Data.Repositories
         Task<List<Flowpoint_Support_Ticket>> GetAllTickets(string searchText);
         Task<List<Flowpoint_Support_Ticket>> GetTicketByID(int ticketID);
         Flowpoint_Support_Ticket GetTicket(int ticketID);
-        Task AddTicket(Flowpoint_Support_Ticket newVTicket);
+        Task AddTicket(Flowpoint_Support_Ticket newTicket);
         void UpdateTicket(Flowpoint_Support_Ticket editedTicket);
         void DeleteTicket(int ticketID);
     }
